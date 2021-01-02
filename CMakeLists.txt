@@ -201,11 +201,11 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(tf_broadcaster_lidar_frame src/tf_broadcaster_lidar_frame.cpp)
+add_executable(tf_broadcaster_laser_inv_frame src/tf_broadcaster_laser_inv_frame.cpp)
 add_executable(tf_broadcaster_motor_frame src/tf_broadcaster_motor_frame.cpp)
 add_executable(tf_listener src/tf_listener.cpp)
 add_executable(odometry_publisher src/odometry_publisher.cpp)
-target_link_libraries(tf_broadcaster_lidar_frame ${catkin_LIBRARIES})
+target_link_libraries(tf_broadcaster_laser_inv_frame ${catkin_LIBRARIES})
 target_link_libraries(tf_broadcaster_motor_frame ${catkin_LIBRARIES})
 target_link_libraries(tf_listener ${catkin_LIBRARIES})
 target_link_libraries(odometry_publisher ${catkin_LIBRARIES})
