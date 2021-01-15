@@ -1,0 +1,9 @@
+time  ros_time_of_message  
+float32 inhibit
+float32 cmd_rotation_rate
+float32 cmd_linear_rate
+int16 robot_comand
+int16 robot_mode
+float32 diag1
+float32 diag2
+float32 diag3

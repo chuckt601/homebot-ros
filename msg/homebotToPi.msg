@@ -1,0 +1,12 @@
+uint32  arduino_micros  
+float32 integrated_X
+float32 integrated_Y
+float32 X_rate
+float32 Y_rate
+float32 yaw_IMU
+float32 yaw_encoders
+float32 yaw_rate_IMU
+float32 yaw_rate_encoders
+float32 diag1
+float32 diag2
+float32 diag3

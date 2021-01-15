@@ -8,7 +8,7 @@
 #include <string>
 #include <stdio.h>      
 #include <stdlib.h> 
-
+#include <robot_setup_tf/homebotToPi.h>
 using namespace std;
 double x;
 double y;
@@ -19,12 +19,15 @@ double vx = 0.0;
 double vy = -0.0;
 double vth = 0.0;
 
-/*void xdeltaCallback(const sensor_msgs::channelFloat32::Constptr& float_msg)
+void homebotToPiCallback(const robot_setup_tf::homebotToPi::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [%s]", msg->data); 
-  delta_x=float_msg.data;
-
-*/
+  //ROS_INFO("I heard: [%s]", msg->data); 
+  x=msg->integrated_X;
+  y=msg->integrated_Y;
+  th=msg->yaw_IMU;
+  vx=msg->X_rate;
+  vy=msg->Y_rate;
+}
 
 class getdataFromAndroid {
 	double x;
@@ -52,9 +55,10 @@ int main(int argc, char** argv){
 
   ros::NodeHandle n;
   ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
+  ros::Subscriber sub = n.subscribe("homebot_data", 1000, homebotToPiCallback);
   tf::TransformBroadcaster odom_broadcaster;
   //tf::TransformListener listener;
-  getdataFromAndroid android; //constructor
+  //getdataFromAndroid android; //constructor
   //double x = 0.0;
   //double y = 0.0;
   //double th = 0.0;
@@ -101,6 +105,7 @@ int main(int argc, char** argv){
     //th += delta_th;
     //th=0;
     
+    /*
     android.readAndroidFile();
     x=android.getx();
     y=android.gety();
@@ -108,7 +113,8 @@ int main(int argc, char** argv){
     vx=android.getdx();
     vy=android.getdy();
     vth=android.getdth();
-  
+    */
+     
     //since all odometry is 6DOF we'll need a quaternion created from yaw
     geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(-th);
 
